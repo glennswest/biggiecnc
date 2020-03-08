@@ -4,6 +4,7 @@
 inch = 25.4;
 estowall = .067 * inch;
 estosize = .87 * inch;
+bsize=4;
 
 module arc(radius, thickness, angle, fragments){
   $fn=fragments;
@@ -33,7 +34,7 @@ module arc(radius, thickness, angle, fragments){
 }
 
 module brace_body(){
-   rotate([0,0,45]) linear_extrude(height = estosize, center = true, convexity = 10, twist = 0) arc(10 * inch ,3 * inch,90,100);
+   rotate([0,0,45]) linear_extrude(height = estosize, center = true, convexity = 10, twist = 0) arc(bsize * inch ,3 * inch,90,100);
 }
 
 module mounting_ear(){
@@ -48,11 +49,13 @@ module mounting_ear(){
 
 difference(){
     brace_body();
-    rotate([0,0,-15]) translate([0,11.5*inch,0-estosize+5]) cylinder(r=20,h=estosize+10);
-    rotate([0,0,-30]) translate([0,11.5*inch,0-estosize+5]) cylinder(r=20,h=estosize+10);
-    rotate([0,0,-45]) translate([0,11.5*inch,0-estosize+5]) cylinder(r=20,h=estosize+10);
-    rotate([0,0,-60]) translate([0,11.5*inch,0-estosize+5]) cylinder(r=20,h=estosize+10);
-    rotate([0,0,-75]) translate([0,11.5*inch,0-estosize+5]) cylinder(r=20,h=estosize+10);
-}
-rotate([0,180,0]) translate([-estosize,9*inch,0-estosize/2]) mounting_ear();
-rotate([0,0,-90]) translate([-estosize,9*inch,0-estosize/2]) mounting_ear();
+    rotate([0,0,-20]) translate([0,(bsize+1.5)*inch,0-estosize+5]) cylinder(r=20,h=estosize+10);
+    rotate([0,0,-45]) translate([0,(bsize+1.5)*inch,0-estosize+5]) cylinder(r=20,h=estosize+10);
+    rotate([0,0,-70]) translate([0,(bsize+1.5)*inch,0-estosize+5]) cylinder(r=20,h=estosize+10);
+    rotate([0,0,-32.5]) translate([0,(bsize+.6)*inch,0-estosize+5]) cylinder(r=10,h=estosize+10);
+    rotate([0,0,-57.5]) translate([0,(bsize+.6)*inch,0-estosize+5]) cylinder(r=10,h=estosize+10);
+    rotate([0,0,-32.5]) translate([0,(bsize+2.3)*inch,0-estosize+5]) cylinder(r=10,h=estosize+10);
+    rotate([0,0,-57.5]) translate([0,(bsize+2.3)*inch,0-estosize+5]) cylinder(r=10,h=estosize+10);
+    }
+rotate([0,180,0]) translate([-estosize,(bsize-1)*inch,0-estosize/2]) mounting_ear();
+rotate([0,0,-90]) translate([-estosize,(bsize-1)*inch,0-estosize/2]) mounting_ear();
