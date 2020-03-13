@@ -48,6 +48,15 @@ module mounting_ear(){
     }    
 }
 
+module half_ear(){
+    difference(){
+        translate([0,(strutsize*inch),0]) cube([estosize,strutsize*inch,thickness]);
+        translate([(.70*estosize),(bsize*inch)-1.5*inch,1-thickness]) rotate([0,0,0]) cylinder(r=2.75,h=thickness+5);
+        translate([(.70*estosize),(bsize*inch)-.5*inch, 1-thickness]) rotate([0,0,0]) cylinder(r=2.75,h=thickness+5);
+    }    
+    
+}
+
 module strut(){
   difference(){
     brace_body();
@@ -63,11 +72,32 @@ module radius_plate(){
     rotate([0,0,-90]) translate([0,(strutsize*inch),0-(thickness/2)]) mounting_ear();
 }
 
+module strut_holes(){
+ translate([(0-.50*estosize),(bsize*inch)-1.5*inch,1-thickness]) rotate([0,0,0]) cylinder(r=2.75,h=thickness+5);
+  translate([(0-.50*estosize),(bsize*inch)-.5*inch, 1-thickness]) rotate([0,0,0]) cylinder(r=2.75,h=thickness+5);   
+}
+
+module universal_radius_plate(){
+    difference(){
+        strut();
+        rotate([0,180,0]) translate([0,(strutsize*inch),0-(thickness/2)]) strut_holes();
+        rotate([0,0,-90]) translate([0,(strutsize*inch),0-(thickness/2)]) strut_holes();
+        }
+    rotate([0,180,0]) translate([0-estosize/2,(strutsize*inch),0-(thickness/2)]) half_ear();
+    rotate([0,0,-90]) translate([0-estosize/2,(strutsize*inch),0-(thickness/2)]) half_ear();
+    rotate([0,180,0]) translate([0-thickness,(strutsize*inch),0-(thickness/2)])  translate([0,(strutsize*inch),-10]) cube([4,strutsize*inch,thickness+5]);
+    rotate([0,0,-90])  translate([0-thickness,(strutsize*inch),0-(thickness/2)])  translate([0,(strutsize*inch),5]) cube([4,strutsize*inch,thickness+5]);
+}
+
+
 module midradius_plate(){
    radius_plate();
    translate([0-(estosize),0,0]) rotate([0,180,0]) radius_plate();
    }
-//radius_plate();
+ 
+universal_radius_plate();
+   
+//radius_plate();  
 //translate([0,0,0]) projection(cut = true) radius_plate();
 //midradius_plate();
-translate([0,0,0]) projection(cut = true) midradius_plate();   
+//translate([0,0,0]) projection(cut = true) midradius_plate();   
