@@ -80,8 +80,8 @@ module strut_holes(){
 module universal_radius_plate(){
     difference(){
         strut();
-        rotate([0,180,0]) translate([0,(strutsize*inch),0-(thickness/2)]) strut_holes();
-        rotate([0,0,-90]) translate([0,(strutsize*inch),0-(thickness/2)]) strut_holes();
+        rotate([0,180,0]) translate([-3,(strutsize*inch),0-(thickness/2)]) strut_holes();
+        rotate([0,0,-90]) translate([-3,(strutsize*inch),0-(thickness/2)]) strut_holes();
         }
     rotate([0,180,0]) translate([0-estosize/2,(strutsize*inch),0-(thickness/2)]) half_ear();
     rotate([0,0,-90]) translate([0-estosize/2,(strutsize*inch),0-(thickness/2)]) half_ear();
