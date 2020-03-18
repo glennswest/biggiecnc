@@ -3,7 +3,7 @@
 
 inch = 25.4;
 estowall = .067 * inch;
-estosize = .87 * inch;
+estosize = 1 * inch;
 bsize=4;
 strutsize=2;
 struthole=strutsize * .25 * inch;
@@ -96,7 +96,7 @@ module midradius_plate(){
    }
  
 universal_radius_plate();
-   
+//translate([0,0,0]) projection(cut = true) universal_radius_plate();   
 //radius_plate();  
 //translate([0,0,0]) projection(cut = true) radius_plate();
 //midradius_plate();
